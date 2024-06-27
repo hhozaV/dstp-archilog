@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProfesseurRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProfesseurRepository::class)]
 class Professeur
@@ -14,16 +15,29 @@ class Professeur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min:2, max:50)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min:2, max:50)]
     private ?string $surname = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min:2, max:50)]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min:2, max:100)]
     private ?string $mail = null;
+
+    public function __construct()
+    {
+
+    }
 
     public function getId(): ?int
     {
