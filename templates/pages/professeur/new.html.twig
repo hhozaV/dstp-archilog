@@ -1,7 +1,40 @@
 {% extends "base.html.twig" %}
+
 {% block body %}
-    <div class="container" >
+    <div class="container">
         <h1 class="mt-4">Création d'un professeur</h1>
-        {{ form(form) }}
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="form-error">
+                {{ form_errors(form.name) }}
+            </div>
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="row">
+            <div class="form-error">
+                {{ form_errors(form.surname) }}
+            </div>
+            {{ form_label(form.surname) }}
+            {{ form_widget(form.surname) }}
+        </div>
+        <div class="row">
+            <div class="form-error">
+                {{ form_errors(form.phone) }}
+            </div>
+            {{ form_label(form.phone) }}
+            {{ form_widget(form.phone) }}
+        </div>
+        <div class="row">
+            <div class="form-error">
+                {{ form_errors(form.mail) }}
+            </div>
+            {{ form_label(form.mail) }}
+            {{ form_widget(form.mail) }}
+        </div>
+        <div class="row">
+            {{ form_row(form.submit) }}
+        </div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

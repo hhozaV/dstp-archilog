@@ -45,12 +45,46 @@ class ProfesseurController extends AbstractController
             $manager->persist($professeur);
             $manager->flush();
 
+            $this->addFlash(
+                'success',
+                'Vos changements ont été enregistrés !'
+            );
+
             return $this->redirectToRoute('app_professeur');
         }
 
         return $this->render('pages/professeur/new.html.twig', [
             'form' => $form,
     ]);
+    }
+
+    #[Route('/professeur/edit/{name}','professeur_edit',methods:['GET','POST'])]
+    public function edit(
+        Request $request,
+        EntityManagerInterface $manager,
+        Professeur $professeur
+    ): Response
+    {
+        $form = $this->createForm(ProfesseurTyoe::class, $professeur);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $professeur = $form->getData();
+
+            // $manager->persist($professeur);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Vos changements ont été enregistrés !'
+            );
+
+            return $this->redirectToRoute('app_professeur');
+        }
+
+        return $this->render('pages/professeur/edit.html.twig', [
+            'form' => $form,
+        ]);
     }
 
 }
