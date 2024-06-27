@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfesseurController!{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-dismissible alert-success mt-4">
+            {{ message }}
+        </div>
+        <h1>Mes professeurs</h1>
+        {% if not professeurs.items is same as ([]) %}
+            <h4>{{ professeurs.getTotalItemCount }} professeurs</h4>
+            <table class="table table-hover">
+                <thead>
+                <tr class="table-secondary">
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for professeur in professeurs %}
+                    <tr class="table-dark">
+                        <th scope="row">{{ professeur.id }}</th>
+                        <td>{{ professeur.name }}</td>
+                        <td>{{ professeur.surname }}</td>
+                        <td>{{ professeur.phone }}</td>
+                        <td>{{ professeur.mail }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center mt-4">
+                {{ knp_pagination_render(ingredients) }}
+            </div>
+        {% else %}
+            <h4>Il n'y a aucun ingrédient !</h4>
+        {%  endif %}
+    </div>
+{% endblock %}
