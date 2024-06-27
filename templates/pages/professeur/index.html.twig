@@ -18,6 +18,8 @@
                     <th scope="col">Prénom</th>
                     <th scope="col">Téléphone</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Suppression</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +30,18 @@
                         <td>{{ professeur.surname }}</td>
                         <td>{{ professeur.phone }}</td>
                         <td>{{ professeur.mail }}</td>
+                        <td>
+                            <a
+                                    href="{{ path('ingredient_edit', { id: ingredient.id }) }}"
+                                    class="btn btn-info">Modifier
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                    href="{{ path('ingredient_remove', { id: ingredient.id }) }}"
+                                    class="btn btn-warning">Supprimer
+                            </a>
+                        </td>
 
                     </tr>
                 {% endfor %}

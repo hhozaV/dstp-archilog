@@ -87,4 +87,21 @@ class ProfesseurController extends AbstractController
         ]);
     }
 
+    #[Route('professeur/remove/{id}','professeur_remove', methods:['GET','POST'])]
+    public function remove(
+        Request $request,
+        EntityManagerInterface $manager,
+        Professeur $professeur
+    ): Response
+    {
+        $manager->remove($professeur);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "Le professeur a été supprimé"
+        );
+        return $this->redirectToRoute('app_professeur');
+    }
+
 }
